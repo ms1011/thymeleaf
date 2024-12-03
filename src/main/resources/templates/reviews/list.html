@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Review List</title>
+</head>
+<body>
+<h1>Reviews</h1>
+<a href="/reviews/new">Write a Review</a>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Rating</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="review : ${reviews}">
+        <td th:text="${review.title}"></td>
+        <td th:text="${review.author}"></td>
+        <td th:text="${review.rating}"></td>
+        <td>
+            <a th:href="@{/reviews/{id}/edit(id=${review.id})}">Edit</a>
+            <form th:action="@{/reviews/{id}/delete(id=${review.id})}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
